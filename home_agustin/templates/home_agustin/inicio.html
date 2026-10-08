@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
     <h1 class="mb-5 text-center">Catálogo de Entretenimiento</h1>
 
@@ -7,12 +7,16 @@
         <div class="carousel-inner rounded">
             
             {% for genero in lista_generos %}
-                <div class="carousel-item {% if forloop.first %}active{% endif %} bg-dark text-white p-5 text-center">
-                    <div class="py-5">
-                        <h2>{{ genero.nombre }}</h2>
-                        <p class="lead">{{ genero.descripcion }}</p>
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
 
-                        <a href="{% url 'home_agustin:detalle' genero.nombre %}" class="btn btn-outline-light mt-3">Ver 10 películas</a>
+                    <img src="{% static 'images/' %}{{ genero.imagen_fondo }}" class="d-block w-100" alt="{{ genero.nombre }}" style="height: 450px; object-fit: cover; filter: brightness(0.4);">
+                    
+                    <div class="carousel-caption d-flex flex-column justify-content-center h-100" style="bottom: 0;">
+                        <h2 class="display-5 fw-bold">{{ genero.nombre }}</h2>
+                        <p class="lead">{{ genero.descripcion }}</p>
+                        <div>
+                            <a href="{% url 'home_agustin:detalle' genero.nombre %}" class="btn btn-outline-light btn-lg mt-3">Ver películas</a>
+                        </div>
                     </div>
                 </div>
             {% endfor %}

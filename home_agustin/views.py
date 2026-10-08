@@ -3,6 +3,7 @@ generos = [
         {
             "nombre": "Crimen y Suspenso",
             "descripcion": "Escapes imposibles, mentes maestras y misterios atrapantes.",
+            "imagen_fondo": "suspenso.jpg",
             "peliculas": [
                 {"nombre": "El Club de la Pelea", "año": 1999, "imagen": "club.jpg"},
                 {"nombre": "Sueños de Fuga (The Shawshank Redemption)", "año": 1994, "imagen": "suenos_fuga.jpg"},
@@ -19,6 +20,7 @@ generos = [
         {
             "nombre": "Acción y Ciencia Ficción",
             "descripcion": "Adrenalina pura, tecnología avanzada y futuros distópicos.",
+            "imagen_fondo": "accion.jpg",
             "peliculas": [
                 {"nombre": "Interestelar", "año": 2014, "imagen": "interestelar.jpg"},
                 {"nombre": "Matrix", "año": 1999, "imagen": "matrix.jpg"},
@@ -49,6 +51,7 @@ def detalle_genero(request, nombre_genero):
             break
 
     context = {
-        'genero': genero_seleccionado
+        'genero': genero_seleccionado,
+        'lista_generos': generos
     }
     return render(request, 'home_agustin/detalle.html', context)
