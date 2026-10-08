@@ -1,28 +1,26 @@
 from django.shortcuts import render
-
-def inicio(request):
-    generos = [
+generos = [
         {
             "nombre": "Crimen y Suspenso",
-            "descripcion": "Misterios insondables, mentes criminales y escapes al límite.",
+            "descripcion": "Escapes imposibles, mentes maestras y misterios atrapantes.",
             "peliculas": [
-                {"nombre": "El Silencio de los Inocentes", "año": 1991, "imagen": "silencio.jpg"},
-                {"nombre": "Zodiaco", "año": 2007, "imagen": "zodiaco.jpg"},
-                {"nombre": "Se7en", "año": 1995, "imagen": "seven.jpg"},
-                {"nombre": "Prisoners", "año": 2013, "imagen": "prisoners.jpg"},
-                {"nombre": "Perdida", "año": 2014, "imagen": "perdida.jpg"},
-                {"nombre": "El Origen", "año": 2010, "imagen": "origen.jpg"},
-                {"nombre": "La Isla Siniestra", "año": 2010, "imagen": "isla.jpg"},
                 {"nombre": "El Club de la Pelea", "año": 1999, "imagen": "club.jpg"},
-                {"nombre": "Los Infiltrados", "año": 2006, "imagen": "infiltrados.jpg"},
-                {"nombre": "Fuego contra Fuego", "año": 1995, "imagen": "fuego.jpg"}
+                {"nombre": "Sueños de Fuga (The Shawshank Redemption)", "año": 1994, "imagen": "suenos_fuga.jpg"},
+                {"nombre": "El Caballero de la Noche", "año": 2008, "imagen": "batman.jpg"},
+                {"nombre": "Atrápame si puedes", "año": 2002, "imagen": "atrapame.jpg"},
+                {"nombre": "Fuga de Alcatraz", "año": 1979, "imagen": "alcatraz.jpg"},
+                {"nombre": "Guasón (Joker)", "año": 2019, "imagen": "joker.jpg"},
+                {"nombre": "Plan de Escape", "año": 2013, "imagen": "plan_escape.jpg"},
+                {"nombre": "Tiempos Violentos (Pulp Fiction)", "año": 1994, "imagen": "pulp.jpg"},
+                {"nombre": "El Padrino", "año": 1972, "imagen": "padrino.jpg"},
+                {"nombre": "El Silencio de los Inocentes", "año": 1991, "imagen": "silencio.jpg"}
             ]
         },
         {
             "nombre": "Acción y Ciencia Ficción",
-            "descripcion": "Adrenalina pura, demonios, tecnología avanzada y futuros distópicos.",
+            "descripcion": "Adrenalina pura, tecnología avanzada y futuros distópicos.",
             "peliculas": [
-                {"nombre": "Doom: La Puerta del Infierno", "año": 2005, "imagen": "doom.jpg"},
+                {"nombre": "Interestelar", "año": 2014, "imagen": "interestelar.jpg"},
                 {"nombre": "Matrix", "año": 1999, "imagen": "matrix.jpg"},
                 {"nombre": "Terminator 2", "año": 1991, "imagen": "terminator2.jpg"},
                 {"nombre": "Mad Max: Furia en el Camino", "año": 2015, "imagen": "madmax.jpg"},
@@ -31,13 +29,26 @@ def inicio(request):
                 {"nombre": "John Wick", "año": 2014, "imagen": "johnwick.jpg"},
                 {"nombre": "Al Filo del Mañana", "año": 2014, "imagen": "alfilo.jpg"},
                 {"nombre": "RoboCop", "año": 1987, "imagen": "robocop.jpg"},
-                {"nombre": "Dredd", "año": 2012, "imagen": "dredd.jpg"}
+                {"nombre": "Duna", "año": 2021, "imagen": "duna.jpg"}
             ]
         }
     ]
 
+def inicio(request):
     context = {
         'lista_generos': generos
     }
 
     return render(request, 'home_agustin/inicio.html', context)
+
+def detalle_genero(request, nombre_genero):
+    genero_seleccionado = None
+    for g in generos:
+        if g['nombre'] == nombre_genero:
+            genero_seleccionado = g
+            break
+
+    context = {
+        'genero': genero_seleccionado
+    }
+    return render(request, 'home_agustin/detalle.html', context)

@@ -1,7 +1,30 @@
 {% extends 'base.html' %}
 
-{% block title %}EVS2{% endblock %}
-
 {% block content %}
-    <h1>Bievenido a Películas</h1>
+    <h1 class="mb-5 text-center">Catálogo de Entretenimiento</h1>
+
+    <div id="carruselGeneros" class="carousel slide shadow" data-bs-ride="carousel">
+        <div class="carousel-inner rounded">
+            
+            {% for genero in lista_generos %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %} bg-dark text-white p-5 text-center">
+                    <div class="py-5">
+                        <h2>{{ genero.nombre }}</h2>
+                        <p class="lead">{{ genero.descripcion }}</p>
+
+                        <a href="{% url 'home_agustin:detalle' genero.nombre %}" class="btn btn-outline-light mt-3">Ver 10 películas</a>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carruselGeneros" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carruselGeneros" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+        </button>
+    </div>
 {% endblock %}
